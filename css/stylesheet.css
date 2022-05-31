@@ -1,0 +1,40 @@
+article{
+    overflow: auto;
+    border: 3px solid #B33E27;
+    border-radius: 30px;
+    padding: 20px;
+    margin: 20px;
+    background-color:#F26D44;
+    font-family: 'Noto Sans JP', sans-serif;
+}
+h1,h2{
+    color : #EBEAE6;
+    padding: 1.4rem;
+    font-family: 'Lobster', cursive;
+    font-size: 1.5rem;
+    float: left;
+}
+h2{
+    font-size: 1.2rem;
+}
+
+ul {
+    list-style-type: "→ ";
+    list-style-position: inside;
+}
+
+article.general{
+    display: inline-block;
+    width: 55%;
+}
+
+article.side{
+    display: inline-block;
+    float:right;
+    width: 32%;
+}
+img{
+    width: 200px;
+    float: right;
+    border-radius: 15px;
+}
