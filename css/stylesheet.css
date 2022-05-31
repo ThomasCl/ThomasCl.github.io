@@ -7,16 +7,18 @@ article{
     background-color:#F26D44;
     font-family: 'Noto Sans JP', sans-serif;
 }
-h1,h2{
+h1,h2,h3{
     color : #EBEAE6;
     padding: 1.4rem;
     font-family: 'Lobster', cursive;
     font-size: 1.5rem;
-    float: left;
+
 }
 h2{
     font-size: 1.2rem;
+    float: left;
 }
+h1{float: left;}
 
 ul {
     list-style-type: "→ ";
