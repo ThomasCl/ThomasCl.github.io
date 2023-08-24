@@ -1,0 +1,14 @@
+{
+    "first-name": "Thomas",
+    "last-name": "Claessens",
+    "github-url": "https://github.com/ucll-vgo2122/minesweeper-ThomasCl",
+    "framework": "WPF",
+    "extensions": [
+        "In Play Screen, when mouse hovers over square, it lights up. Note: the default highlight of Buttons does not count! Either change the highlight color or use something different than Buttons). This extension requires some code to be written.",
+        "After losing, show all mines and highlight the last uncovered square (which contained a mine)",
+        "Different font color depending of amount of neighboring mines",
+        "Improved visualization of squares",
+	  "Custom mine probability",
+	  "Quickstart (preset board sizes, such as Easy (5×5), Medium (10×10), …​)"
+    ]
+}

@@ -1,0 +1,13 @@
+# Use a base image with .NET Runtime and WPF support
+FROM mcr.microsoft.com/dotnet/runtime:6.0
+
+# Set the working directory
+WORKDIR /app
+
+# Copy the necessary files for each layer
+COPY View/bin/Debug/net6.0-windows/ View/
+COPY ViewModel/bin/Debug/net6.0-windows/ ViewModel/
+COPY Model/bin/Debug/net6.0-windows/ Model/
+
+# Set the entry point for your application (assuming the executable is in the View layer)
+ENTRYPOINT ["View\bin\Debug\net6.0-windows\View.dll"]
