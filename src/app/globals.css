@@ -1,0 +1,41 @@
+/* styles/globals.css */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.profile-header {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+  margin: 20px auto;
+  margin-bottom: 20px;
+  padding: 20px;
+  max-width: 800px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-body {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-body h2 {
+  margin-top: 0;
+}
+
+.skills {
+  margin-top: 20px;
+}
+
+.skill {
+  display: inline-block;
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin: 5px;
+}
+
