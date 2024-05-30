@@ -99,6 +99,7 @@ body {
   justify-content: center;
   align-items: center;
   margin-top: 20px;
+  margin-bottom: 20px;
 }
 
 .checkbox-container label {
@@ -106,3 +107,204 @@ body {
   padding-left: 5px;
   cursor: pointer;
 }
+
+/* Stijl voor de thema-filter div */
+.themas-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  width: 320px;
+  margin: 0 auto; /* Centreer de div horizontaal */
+}
+
+/* Stijl voor de thema-bar input */
+.themas-bar {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Stijl voor de thema-clearall button */
+.themas-clearall {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.themas-clearall:hover {
+  background-color: #cc0000;
+}
+
+/* Stijl voor de checkboxes en labels */
+.themas-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.themas-checkbox {
+  display: flex;
+  align-items: center;
+  width: calc(33.33% - 10px); /* Pas de breedte aan zodat maximaal 3 naast elkaar passen */
+}
+
+.themas-filter input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.themas-filter label {
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+
+
+/* Stijl voor de thema-filter div */
+.skills-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  width: 320px;
+  margin: 0 auto; /* Centreer de div horizontaal */
+}
+
+/* Stijl voor de thema-bar input */
+.skills-bar {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Stijl voor de thema-clearall button */
+.skills-clearall {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.skills-clearall:hover {
+  background-color: #cc0000;
+}
+
+/* Stijl voor de checkboxes en labels */
+.skills-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.skills-checkbox {
+  display: flex;
+  align-items: center;
+  width: calc(33.33% - 10px); /* Pas de breedte aan zodat maximaal 3 naast elkaar passen */
+}
+
+.skills-filter input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.skills-filter label {
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* Stijl voor de thema-filter div */
+.functies-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  width: 320px;
+  margin: 0 auto; /* Centreer de div horizontaal */
+}
+
+/* Stijl voor de thema-bar input */
+.functies-bar {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Stijl voor de thema-clearall button */
+.functies-clearall {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.functies-clearall:hover {
+  background-color: #cc0000;
+}
+
+/* Stijl voor de checkboxes en labels */
+.functies-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.themas-checkbox {
+  display: flex;
+  align-items: center;
+  width: calc(33.33% - 10px); /* Pas de breedte aan zodat maximaal 3 naast elkaar passen */
+}
+
+.functies-filter input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.functies-filter label {
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
