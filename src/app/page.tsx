@@ -1,30 +1,41 @@
-// pages/index.js
-import Head from 'next/head';
-import ProfileHeader from '../../components/profileHeader';
-import { profileHeaderProps } from '../../types';
-import ProfileBody from '../../components/profileBody';
-import { profileBodyProps } from '../../types';
+"use client";
 import React from 'react';
+import Header from '../../components/navbar'
+import Head from 'next/head';
 
-const Home: React.FC = () =>{
-  const headerData: profileHeaderProps = {
-    name:"Bob De Bouwer",
-    title:"Doctor in the building",
-    institution:"University of Lentestad"
-  }
-  
-  const bodyData: profileBodyProps = {  
-    biography: "Dr. De Bouwer is a very smart man. He has a lot of expierence in building things. He is a doctor in the building. He has a lot of knowledge about building things.",
-    skills: ["Building", "Construction", "Engineering", "Doctoring", "Building things", "Construction work", "Engineering work"]
-  }
+const SearchBar: React.FC = () => {
+  const [isSelected, setIsSelected] = React.useState(false);
   return (
+    <>
     <div>
       <Head>
         <title>Profile Page</title>
       </Head>
-      <ProfileHeader {...headerData} />
-      <ProfileBody {...bodyData} />
+      <Header></Header>
     </div>
-  );
+    <div className="search-container">
+      <input
+        type="text"
+        className="search-bar"
+        placeholder="Zoek..."
+      />
+      <button type="submit" className="search-button">Zoek</button>
+    </div>
+    <div className="additional-buttons">
+      <button className="button">Thema's</button>
+      <button className="button">Skills</button>
+      <button className="button">Functies</button>
+    </div>
+    <div className="checkbox-container">
+      <input type="checkbox" id="myCheckbox"/>
+      <label>
+        urbanlab related
+      </label>
+    </div>
+      
+    </>
+    );
 }
-export default Home;
+
+
+export default SearchBar;
