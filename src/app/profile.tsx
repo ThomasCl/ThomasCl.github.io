@@ -1,30 +1,50 @@
 
-import Head from 'next/head';
-import ProfileHeader from '../../components/profileHeader';
-import { profileHeaderProps } from '../../types';
-import ProfileBody from '../../components/profileBody';
-import { profileBodyProps } from '../../types';
 import React from 'react';
+import {user} from '../../types'
 import Header from '../../components/navbar'
 
-const Home: React.FC = () =>{
-  const headerData: profileHeaderProps = {
-    name:"Bob De Bouwer",
-    title:"Doctor in the building",
-    institution:"University of Lentestad"
-  }
-  
-  const bodyData: profileBodyProps = {  
-    biography: "Dr. De Bouwer is a very smart man. He has a lot of expierence in building things. He is a doctor in the building. He has a lot of knowledge about building things.",
-    skills: ["Building", "Construction", "Engineering", "Doctoring", "Building things", "Construction work", "Engineering work"]
-  }
+const Profile : React.FC<user> = ({voornaam, achternaam, profielfoto, institutie, huidige_functie, email, telefoon_nummer, skills, themas, kring, urbanlab_related, biography, profile_pagina}) => {
   return (
-    <div>
-      <Head>
-        <title>Profile Page</title>
-      </Head>
-      <Header></Header>
+    <>
+    <Header></Header>
+    <div className="profile-body">
+      <h2>Biography:</h2>
+      <p>{biography}</p>
+      <h2>publicaties:</h2>
+      <ul>
+        {skills.map((skill, index) => (
+          <li key={index}>{skill}</li>
+        ))}
+      </ul>
     </div>
+    <div className="profile-info">
+      <h2>{voornaam} {achternaam}</h2>
+      <p>{profielfoto}</p>
+      <p>{institutie}</p>
+      <ul>
+        {huidige_functie.map((functie, index) => (
+          <li key={index}>{functie}</li>
+        ))}
+      </ul>
+      <p>{email}</p>
+      <p>{telefoon_nummer}</p>
+      <ul>
+        {skills.map((skill, index) => (
+          <li key={index}>{skill}</li>
+        ))}
+      </ul>
+      <ul>
+        {themas.map((thema, index) => (
+          <li key={index}>{thema}</li>
+        ))}
+      </ul>
+      <p>{kring}</p>
+      <p>{urbanlab_related}</p>
+      <p>{profile_pagina}</p>
+    </div>
+    </>
   );
-}
-export default Home;
+};
+
+export default Profile;
+
