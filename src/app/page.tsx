@@ -26,15 +26,21 @@ const SearchBar: React.FC = () => {
   });
 
   const handleThemasClick = () => {
-    setShowThemasFilter(!showThemasFilter);
+    setShowThemasFilter(true);
+    setShowSkillsFilter(false);
+    setShowFunctiesFilter(false);
   };
 
   const handleSkillsClick = () => {
-    setShowSkillsFilter(!showSkillsFilter);
+    setShowSkillsFilter(true);
+    setShowThemasFilter(false);
+    setShowFunctiesFilter(false);
   };
 
   const handleFunctiesClick = () => {
-    setShowFunctiesFilter(!showFunctiesFilter);
+    setShowFunctiesFilter(true);
+    setShowThemasFilter(false);
+    setShowSkillsFilter(false);
   };
 
   const handleThemaClearAll = () => {
@@ -91,18 +97,39 @@ const SearchBar: React.FC = () => {
       </Head>
       <Header></Header>
     </div>
-    <div className="search-container">
-      <input
-        type="text"
-        className="search-bar"
-        placeholder="Zoek..."
-      />
-      <button type="submit" className="search-button">Zoek</button>
+    <div className="searchbar">
+      <div className="searchbar-wrapper">
+          <div className="searchbar-left">
+              <div className="search-icon-wrapper">
+                  <span className="search-icon searchbar-icon">
+                      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                          <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                          </path>
+                      </svg>
+                  </span>
+              </div>
+          </div>
+
+          <div className="searchbar-center">
+              <div className="searchbar-input-spacer"></div>
+              <input type="text" className="searchbar-input" name="q" title="Search" role="combobox" placeholder="Zoek..."/>
+          </div>
+      </div>
     </div>
-    <div className="additional-buttons">
-      <button className="button" onClick={handleThemasClick}>Thema's</button>
-      <button className="button" onClick={handleSkillsClick}>Skills</button>
-      <button className="button" onClick={handleFunctiesClick}>Functies</button>
+    <div className="radio-input">
+      <label>
+      <input type="radio" id="themas" name="value-radio" value="themas" onClick={handleThemasClick}/>
+      <span>Thema's</span>
+      </label>
+      <label>
+        <input type="radio" id="skills" name="value-radio" value="skills" onClick={handleSkillsClick}/>
+      <span>Skills</span>
+      </label>
+      <label>
+        <input type="radio" id="functies" name="value-radio" value="functies" onClick={handleFunctiesClick}/>
+      <span>Functies</span>
+      </label>
+      <span className="selection"></span>
     </div>
     <div className="checkbox-container">
       <input type="checkbox" id="myCheckbox"/>
@@ -114,11 +141,25 @@ const SearchBar: React.FC = () => {
     {showThemasFilter && (
     <div className="themas-filter">
         <h3>Thema's</h3>
-      <input
-          type="text"
-          className="themas-bar"
-          placeholder="Optie..."
-        />
+        <div className="searchbar">
+        <div className="searchbar-wrapper">
+            <div className="searchbar-left">
+                <div className="search-icon-wrapper">
+                    <span className="search-icon searchbar-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                            </path>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <div className="searchbar-center">
+                <div className="searchbar-input-spacer"></div>
+                <input type="text" className="searchbar-input-themas" name="q" title="Search" role="combobox" placeholder="Zoek..."/>
+            </div>
+        </div>
+      </div>
       <button type="submit" className="themas-clearall" onClick={handleThemaClearAll}>Verwijder alles</button>
       <div className="themas-checkbox-group">
         <div className="themas-checkbox">
@@ -151,12 +192,26 @@ const SearchBar: React.FC = () => {
 
     {showSkillsFilter && (
     <div className="skills-filter">
-        <h3>skills</h3>
-      <input
-          type="text"
-          className="skills-bar"
-          placeholder="Optie..."
-      />
+        <h3>Skills</h3>
+        <div className="searchbar">
+          <div className="searchbar-wrapper">
+              <div className="searchbar-left">
+                  <div className="search-icon-wrapper">
+                      <span className="search-icon searchbar-icon">
+                          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                              <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                              </path>
+                          </svg>
+                      </span>
+                  </div>
+              </div>
+
+              <div className="searchbar-center">
+                  <div className="searchbar-input-spacer"></div>
+                  <input type="text" className="searchbar-input-skills" name="q" title="Search" role="combobox" placeholder="Zoek..."/>
+              </div>
+          </div>
+      </div>
       <button type="submit" className="skills-clearall" onClick={handleSkillClearAll}>Verwijder alles</button>
       <div className="skills-checkbox-group">
         <div className="skills-checkbox">
@@ -177,12 +232,26 @@ const SearchBar: React.FC = () => {
 
     {showFunctiesFilter && (
     <div className="functies-filter">
-      <h3>functies</h3>
-      <input
-          type="text"
-          className="functies-bar"
-          placeholder="Optie..."
-        />
+      <h3>Functies</h3>
+        <div className="searchbar">
+        <div className="searchbar-wrapper">
+            <div className="searchbar-left">
+                <div className="search-icon-wrapper">
+                    <span className="search-icon searchbar-icon">
+                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
+                            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
+                            </path>
+                        </svg>
+                    </span>
+                </div>
+            </div>
+
+            <div className="searchbar-center">
+                <div className="searchbar-input-spacer"></div>
+                <input type="text" className="searchbar-input-functies" name="q" title="Search" role="combobox" placeholder="Zoek..."/>
+            </div>
+        </div>
+      </div>
       <button type="submit" className="functies-clearall" onClick={handleFunctieClearAll}>Verwijder alles</button>
       <div className="functies-checkbox-group">
         <div className="functies-checkbox">
@@ -199,9 +268,7 @@ const SearchBar: React.FC = () => {
         </div>
       </div>
     </div>
-    )}
-    
-      
+    )} 
     </>
     );
 }

@@ -13,6 +13,7 @@ const styles = {
     backgroundColor: 'Teal',
     padding: '10px',
     textAlign: 'center' as const,
+    marginBottom: '20px',
   },
   title: {
     color: 'white',
