@@ -1,0 +1,310 @@
+/* styles/globals.css */
+body {
+  font-family: Arial, sans-serif;
+}
+
+.profile-header {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  text-align: center;
+  margin: 20px auto;
+  margin-bottom: 20px;
+  padding: 20px;
+  max-width: 800px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-body {
+  border: 1px solid #ddd;
+  border-radius: 5px;
+  padding: 20px;
+  margin: 20px auto;
+  max-width: 800px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.profile-body h2 {
+  margin-top: 0;
+}
+
+.skills {
+  margin-top: 20px;
+}
+
+.skill {
+  display: inline-block;
+  background-color: #f1f1f1;
+  border-radius: 3px;
+  padding: 5px 10px;
+  margin: 5px;
+}
+
+/* Stijl voor de zoekbalk */
+.search-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 20px;
+  margin-top: 20px;
+}
+
+.search-bar {
+  width: 300px;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin-right: 10px;
+}
+
+.search-button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.search-button:hover {
+  background-color: #0056b3;
+}
+
+/* Stijl voor de extra knoppen */
+.additional-buttons {
+  display: flex;
+  justify-content: center;
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #555;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-right: 10px;
+}
+
+.button:hover {
+  background-color: #333;
+}
+
+/* Stijl voor de checkbox */
+.checkbox-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 20px;
+  margin-bottom: 20px;
+}
+
+.checkbox-container label {
+  display: inline-block;
+  padding-left: 5px;
+  cursor: pointer;
+}
+
+/* Stijl voor de thema-filter div */
+.themas-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  width: 320px;
+  margin: 0 auto; /* Centreer de div horizontaal */
+}
+
+/* Stijl voor de thema-bar input */
+.themas-bar {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Stijl voor de thema-clearall button */
+.themas-clearall {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.themas-clearall:hover {
+  background-color: #cc0000;
+}
+
+/* Stijl voor de checkboxes en labels */
+.themas-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.themas-checkbox {
+  display: flex;
+  align-items: center;
+  width: calc(33.33% - 10px); /* Pas de breedte aan zodat maximaal 3 naast elkaar passen */
+}
+
+.themas-filter input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.themas-filter label {
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+
+
+/* Stijl voor de thema-filter div */
+.skills-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  width: 320px;
+  margin: 0 auto; /* Centreer de div horizontaal */
+}
+
+/* Stijl voor de thema-bar input */
+.skills-bar {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Stijl voor de thema-clearall button */
+.skills-clearall {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.skills-clearall:hover {
+  background-color: #cc0000;
+}
+
+/* Stijl voor de checkboxes en labels */
+.skills-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.skills-checkbox {
+  display: flex;
+  align-items: center;
+  width: calc(33.33% - 10px); /* Pas de breedte aan zodat maximaal 3 naast elkaar passen */
+}
+
+.skills-filter input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.skills-filter label {
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+/* Stijl voor de thema-filter div */
+.functies-filter {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 20px;
+  padding: 20px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  width: 320px;
+  margin: 0 auto; /* Centreer de div horizontaal */
+}
+
+/* Stijl voor de thema-bar input */
+.functies-bar {
+  width: 100%;
+  height: 40px;
+  padding: 10px;
+  font-size: 16px;
+  border: 2px solid #ccc;
+  border-radius: 10px;
+  margin-bottom: 10px;
+}
+
+/* Stijl voor de thema-clearall button */
+.functies-clearall {
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff0000;
+  color: #fff;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
+.functies-clearall:hover {
+  background-color: #cc0000;
+}
+
+/* Stijl voor de checkboxes en labels */
+.functies-checkbox-group {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 10px;
+  width: 100%;
+}
+
+.themas-checkbox {
+  display: flex;
+  align-items: center;
+  width: calc(33.33% - 10px); /* Pas de breedte aan zodat maximaal 3 naast elkaar passen */
+}
+
+.functies-filter input[type="checkbox"] {
+  margin-right: 5px;
+}
+
+.functies-filter label {
+  display: inline-block;
+  font-size: 16px;
+  cursor: pointer;
+  margin-bottom: 10px;
+}
+
