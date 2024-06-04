@@ -114,7 +114,14 @@ const SearchBar: React.FC = () => {
               <div className="searchbar-input-spacer"></div>
               <input type="text" className="searchbar-input" name="q" title="Search" role="combobox" placeholder="Zoek..."/>
           </div>
+          <button type="submit" className="searchbar-submit">Zoek</button>
       </div>
+    </div>
+    <div className="checkbox-container">
+      <input type="checkbox" id="myCheckbox"/>
+      <label>
+        Is de persoon urbanlab gerelateerd?
+      </label>
     </div>
     <div className="radio-input">
       <label>
@@ -131,12 +138,7 @@ const SearchBar: React.FC = () => {
       </label>
       <span className="selection"></span>
     </div>
-    <div className="checkbox-container">
-      <input type="checkbox" id="myCheckbox"/>
-      <label>
-        urbanlab related
-      </label>
-    </div>
+    
 
     {showThemasFilter && (
     <div className="themas-filter">
@@ -160,34 +162,35 @@ const SearchBar: React.FC = () => {
             </div>
         </div>
       </div>
-      <button type="submit" className="themas-clearall" onClick={handleThemaClearAll}>Verwijder alles</button>
       <div className="themas-checkbox-group">
-        <div className="themas-checkbox">
+        <div className="themaA">
           <input type="checkbox" id="themaA" checked={themaCheckboxes.themaA} onChange={handleThemaCheckboxChange}/>
           <label>
             optie a
           </label>
         </div>
-        <div className="themas-checkbox">
+        <div className="themaB">
           <input type="checkbox" id="themaB" checked={themaCheckboxes.themaB} onChange={handleThemaCheckboxChange}/>
           <label>
             optie b
           </label>
         </div>
-        <div className="themas-checkbox">
+        <div className="themaC">
           <input type="checkbox" id="themaC" checked={themaCheckboxes.themaC} onChange={handleThemaCheckboxChange}/>
           <label>
             optie c
           </label>
         </div>
-        <div className="themas-checkbox">
+        <div className="themaD">
           <input type="checkbox" id="themaD" checked={themaCheckboxes.themaD} onChange={handleThemaCheckboxChange}/>
           <label>
             optie d
           </label>
         </div>
       </div>
+      <button type="submit" className="themas-clearall" onClick={handleThemaClearAll}>Verwijder thema's</button>
     </div>
+
     )}
 
     {showSkillsFilter && (
@@ -212,21 +215,21 @@ const SearchBar: React.FC = () => {
               </div>
           </div>
       </div>
-      <button type="submit" className="skills-clearall" onClick={handleSkillClearAll}>Verwijder alles</button>
       <div className="skills-checkbox-group">
-        <div className="skills-checkbox">
+        <div className="skillA">
           <input type="checkbox" id="skillA" checked={skillCheckboxes.skillA} onChange={handleSkillCheckboxChange}/>
           <label>
             optie a
           </label>
         </div>
-        <div className="skills-checkbox">
+        <div className="skillB">
           <input type="checkbox" id="skillB" checked={skillCheckboxes.skillB} onChange={handleSkillCheckboxChange}/>
           <label>
             optie b
           </label>
         </div>
       </div>
+      <button type="submit" className="skills-clearall" onClick={handleSkillClearAll}>Verwijder skills</button>
     </div>
     )}
 
@@ -252,21 +255,22 @@ const SearchBar: React.FC = () => {
             </div>
         </div>
       </div>
-      <button type="submit" className="functies-clearall" onClick={handleFunctieClearAll}>Verwijder alles</button>
+      
       <div className="functies-checkbox-group">
-        <div className="functies-checkbox">
+        <div className="functieA">
           <input type="checkbox" id="functieA" checked={functieCheckboxes.functieA} onChange={handleFunctieCheckboxChange}/>
           <label>
             optie a
           </label>
         </div>
-        <div className="functies-checkbox">
+        <div className="functieB">
           <input type="checkbox" id="functieB" checked={functieCheckboxes.functieB} onChange={handleFunctieCheckboxChange}/>
           <label>
             optie b
           </label>
         </div>
       </div>
+      <button type="submit" className="functies-clearall" onClick={handleFunctieClearAll}>Verwijder functies</button>
     </div>
     )} 
     </>
