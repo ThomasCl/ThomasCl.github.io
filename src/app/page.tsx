@@ -3,7 +3,7 @@ import React from 'react';
 import Header from '../../components/navbar'
 import Head from 'next/head';
 import { useState } from 'react';
-
+import UserService from '../../services/UserService';
 const SearchBar: React.FC = () => {
   const [showThemasFilter, setShowThemasFilter] = useState(false);
   const [showSkillsFilter, setShowSkillsFilter] = useState(false);
