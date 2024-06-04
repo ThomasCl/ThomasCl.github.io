@@ -2,27 +2,30 @@
 import React from 'react';
 import Header from '../../components/navbar'
 import Head from 'next/head';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import UserService from '../../services/UserService';
+import { json_user } from '../../types';
+import { user } from '@nextui-org/react';
+import UserOverviewTable from '../../components/userOverview';
 const SearchBar: React.FC = () => {
   const [showThemasFilter, setShowThemasFilter] = useState(false);
   const [showSkillsFilter, setShowSkillsFilter] = useState(false);
   const [showFunctiesFilter, setShowFunctiesFilter] = useState(false);
+  
+  const[nameFilter, setNameFilter] = useState("")
+  const[themasFilter, setThemasFilter] = useState("")
+  const[skillsFilter, setSkillsFilter] = useState("")
+  const[functiesFilter, setFunctiesFilter] = useState("")
+  const[relatedFilter, setrelatedFilter] = useState(false)
+
+
+  const [users, setUsers] = useState<json_user[]>([])
+
   const [themaCheckboxes, setThemaCheckboxes] = useState({
     themaA: false,
     themaB: false,
     themaC: false,
     themaD: false,
-  });
-
-  const [skillCheckboxes, setSkillCheckboxes] = useState({
-    skillA: false,
-    skillB: false,
-  });
-
-  const [functieCheckboxes, setFunctieCheckboxes] = useState({
-    functieA: false,
-    functieB: false,
   });
 
   const handleThemasClick = () => {
@@ -52,20 +55,6 @@ const SearchBar: React.FC = () => {
     });
   };
 
-  const handleSkillClearAll = () => {
-    setSkillCheckboxes({
-      skillA: false,
-      skillB: false,
-    });
-  };
-
-  const handleFunctieClearAll = () => {
-    setFunctieCheckboxes({
-      functieA: false,
-      functieB: false,
-    });
-  };
-
   const handleThemaCheckboxChange = (e: { target: { id: any; checked: any; }; }) => {
     const { id, checked } = e.target;
     setThemaCheckboxes((prevCheckboxes) => ({
@@ -74,21 +63,31 @@ const SearchBar: React.FC = () => {
     }));
   };
 
-  const handleSkillCheckboxChange = (e: { target: { id: any; checked: any; }; }) => {
-    const { id, checked } = e.target;
-    setSkillCheckboxes((prevCheckboxes) => ({
-      ...prevCheckboxes,
-      [id]: checked,
-    }));
-  };
+  const getAllUsers = async () => {
+    setUsers(UserService.getAllUsers());
+  }
+  const getUser = async (name?: string,
+    functies?: string, 
+    themas?: string, 
+    skills?: string, 
+    urbanLabRelated?:boolean) =>{
+      setUsers(UserService.getUsers(name,functies,themas,skills,urbanLabRelated));
+    }
 
-  const handleFunctieCheckboxChange = (e: { target: { id: any; checked: any; }; }) => {
-    const { id, checked } = e.target;
-    setFunctieCheckboxes((prevCheckboxes) => ({
-      ...prevCheckboxes,
-      [id]: checked,
-    }));
-  };
+  useEffect(() => {
+    getAllUsers()
+  }, [])
+
+  useEffect(() => {
+    getUser(
+      nameFilter,
+      functiesFilter, 
+      themasFilter, 
+      skillsFilter, 
+      relatedFilter)
+  }, [nameFilter, functiesFilter, themasFilter, skillsFilter, relatedFilter])
+
+
   return (
     <>
     <div>
@@ -112,7 +111,15 @@ const SearchBar: React.FC = () => {
 
           <div className="searchbar-center">
               <div className="searchbar-input-spacer"></div>
-              <input type="text" className="searchbar-input" name="q" title="Search" role="combobox" placeholder="Zoek..."/>
+              <input 
+                type="text" 
+                className="searchbar-input" 
+                name="q" 
+                title="Search" 
+                role="combobox" 
+                placeholder={nameFilter}
+                onChange={(event) => setNameFilter(event.target.value)}
+                />
           </div>
           <button type="submit" className="searchbar-submit">Zoek</button>
       </div>
@@ -211,25 +218,18 @@ const SearchBar: React.FC = () => {
 
               <div className="searchbar-center">
                   <div className="searchbar-input-spacer"></div>
-                  <input type="text" className="searchbar-input-skills" name="q" title="Search" role="combobox" placeholder="Zoek..."/>
+                  <input 
+                    type="text" 
+                    className="searchbar-input-skills" 
+                    name="q" 
+                    title="Search" 
+                    role="combobox" 
+                    placeholder={skillsFilter}
+                    onChange={(event) => setSkillsFilter(event.target.value)}
+                    />
               </div>
           </div>
       </div>
-      <div className="skills-checkbox-group">
-        <div className="skillA">
-          <input type="checkbox" id="skillA" checked={skillCheckboxes.skillA} onChange={handleSkillCheckboxChange}/>
-          <label>
-            optie a
-          </label>
-        </div>
-        <div className="skillB">
-          <input type="checkbox" id="skillB" checked={skillCheckboxes.skillB} onChange={handleSkillCheckboxChange}/>
-          <label>
-            optie b
-          </label>
-        </div>
-      </div>
-      <button type="submit" className="skills-clearall" onClick={handleSkillClearAll}>Verwijder skills</button>
     </div>
     )}
 
@@ -251,28 +251,23 @@ const SearchBar: React.FC = () => {
 
             <div className="searchbar-center">
                 <div className="searchbar-input-spacer"></div>
-                <input type="text" className="searchbar-input-functies" name="q" title="Search" role="combobox" placeholder="Zoek..."/>
+                <input 
+                  type="text" 
+                  className="searchbar-input-functies" 
+                  name="q" 
+                  title="Search" 
+                  role="combobox" 
+                  placeholder={functiesFilter}
+                  onChange={(event) => setFunctiesFilter(event.target.value)}
+                  />
             </div>
         </div>
       </div>
-      
-      <div className="functies-checkbox-group">
-        <div className="functieA">
-          <input type="checkbox" id="functieA" checked={functieCheckboxes.functieA} onChange={handleFunctieCheckboxChange}/>
-          <label>
-            optie a
-          </label>
-        </div>
-        <div className="functieB">
-          <input type="checkbox" id="functieB" checked={functieCheckboxes.functieB} onChange={handleFunctieCheckboxChange}/>
-          <label>
-            optie b
-          </label>
-        </div>
-      </div>
-      <button type="submit" className="functies-clearall" onClick={handleFunctieClearAll}>Verwijder functies</button>
     </div>
     )} 
+
+      <UserOverviewTable users={users}/>
+
     </>
     );
 }

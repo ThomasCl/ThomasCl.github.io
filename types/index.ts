@@ -23,9 +23,9 @@ export interface json_user {
     email: string;
     phone_number: string;
     skills: string;
-    themas: string;
+    themas: string[];
     kring: string;
-    urban_lab_related: string;
+    urban_lab_related: boolean;
     bio: string;
     profile_page: string;
 }
