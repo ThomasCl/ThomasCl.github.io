@@ -4,7 +4,7 @@ import Header from '../../components/navbar'
 import Head from 'next/head';
 import { useState, useEffect } from 'react';
 import UserService from '../../services/UserService';
-import { json_user } from '../../types';
+import { json_user, ThemaCheckboxes } from '../../types';
 import { user } from '@nextui-org/react';
 import UserOverviewTable from '../../components/userOverview';
 const SearchBar: React.FC = () => {
@@ -13,20 +13,13 @@ const SearchBar: React.FC = () => {
   const [showFunctiesFilter, setShowFunctiesFilter] = useState(false);
   
   const[nameFilter, setNameFilter] = useState("")
-  const[themasFilter, setThemasFilter] = useState("")
   const[skillsFilter, setSkillsFilter] = useState("")
   const[functiesFilter, setFunctiesFilter] = useState("")
   const[relatedFilter, setrelatedFilter] = useState(false)
-
-
+  
   const [users, setUsers] = useState<json_user[]>([])
-
-  const [themaCheckboxes, setThemaCheckboxes] = useState({
-    themaA: false,
-    themaB: false,
-    themaC: false,
-    themaD: false,
-  });
+  const[themas, setThemas] = useState<string[]>([])
+  const [themaCheckboxes, setThemaCheckboxes] = useState<ThemaCheckboxes>({})
 
   const handleThemasClick = () => {
     setShowThemasFilter(true);
@@ -47,15 +40,21 @@ const SearchBar: React.FC = () => {
   };
 
   const handleThemaClearAll = () => {
-    setThemaCheckboxes({
-      themaA: false,
-      themaB: false,
-      themaC: false,
-      themaD: false,
+    const clearedCheckboxes: ThemaCheckboxes = {};
+    themas.forEach(thema => {
+      clearedCheckboxes[thema] = false;
     });
+    setThemaCheckboxes(clearedCheckboxes);
   };
 
-  const handleThemaCheckboxChange = (e: { target: { id: any; checked: any; }; }) => {
+  const handleSkillsClearAll = () => {
+    setSkillsFilter("");
+  };
+  const handleFunctiesClearAll = () => {
+    setFunctiesFilter("");
+  };
+
+  const handleThemaCheckboxChange = (e: { target: { id: string; checked: boolean; }; }) => {
     const { id, checked } = e.target;
     setThemaCheckboxes((prevCheckboxes) => ({
       ...prevCheckboxes,
@@ -68,24 +67,38 @@ const SearchBar: React.FC = () => {
   }
   const getUser = async (name?: string,
     functies?: string, 
-    themas?: string, 
+    themas?: string[], 
     skills?: string, 
     urbanLabRelated?:boolean) =>{
       setUsers(UserService.getUsers(name,functies,themas,skills,urbanLabRelated));
     }
 
   useEffect(() => {
-    getAllUsers()
-  }, [])
+    getAllUsers();
+
+    const fetchedThemas = UserService.getAllThemas();
+    setThemas(fetchedThemas);
+
+    const initialCheckboxes: ThemaCheckboxes = {};
+    fetchedThemas.forEach(thema => {
+      initialCheckboxes[thema] = false;
+    });
+    setThemaCheckboxes(initialCheckboxes);
+  }, []);
 
   useEffect(() => {
+    let themasFilter:string[] = []
+    themas.forEach(thema => {
+      if(themaCheckboxes[thema]){themasFilter.push(thema);}});
+    
+    console.log(themasFilter)
+    // themas.forEach(thema => {console.log(thema + themaCheckboxes[thema])});
     getUser(
       nameFilter,
       functiesFilter, 
       themasFilter, 
-      skillsFilter, 
-      relatedFilter)
-  }, [nameFilter, functiesFilter, themasFilter, skillsFilter, relatedFilter])
+      skillsFilter)
+  }, [nameFilter, functiesFilter, themaCheckboxes, skillsFilter, relatedFilter])
 
 
   return (
@@ -117,7 +130,8 @@ const SearchBar: React.FC = () => {
                 name="q" 
                 title="Search" 
                 role="combobox" 
-                placeholder={nameFilter}
+                placeholder= "search ..."
+                value={functiesFilter}  
                 onChange={(event) => setNameFilter(event.target.value)}
                 />
           </div>
@@ -170,35 +184,21 @@ const SearchBar: React.FC = () => {
         </div>
       </div>
       <div className="themas-checkbox-group">
-        <div className="themaA">
-          <input type="checkbox" id="themaA" checked={themaCheckboxes.themaA} onChange={handleThemaCheckboxChange}/>
-          <label>
-            optie a
-          </label>
+            {themas.map((thema, index) => (
+              <div key={index} className={thema}>
+                <input 
+                  type="checkbox" 
+                  id={thema} 
+                  checked={themaCheckboxes[thema]} 
+                  onChange={handleThemaCheckboxChange} 
+                />
+                <label htmlFor={thema}>{thema}</label>
+              </div>
+            ))}
+          </div>
+          <button type="submit" className="themas-clearall" onClick={handleThemaClearAll}>Verwijder thema's</button>
         </div>
-        <div className="themaB">
-          <input type="checkbox" id="themaB" checked={themaCheckboxes.themaB} onChange={handleThemaCheckboxChange}/>
-          <label>
-            optie b
-          </label>
-        </div>
-        <div className="themaC">
-          <input type="checkbox" id="themaC" checked={themaCheckboxes.themaC} onChange={handleThemaCheckboxChange}/>
-          <label>
-            optie c
-          </label>
-        </div>
-        <div className="themaD">
-          <input type="checkbox" id="themaD" checked={themaCheckboxes.themaD} onChange={handleThemaCheckboxChange}/>
-          <label>
-            optie d
-          </label>
-        </div>
-      </div>
-      <button type="submit" className="themas-clearall" onClick={handleThemaClearAll}>Verwijder thema's</button>
-    </div>
-
-    )}
+      )}
 
     {showSkillsFilter && (
     <div className="skills-filter">
@@ -217,19 +217,21 @@ const SearchBar: React.FC = () => {
               </div>
 
               <div className="searchbar-center">
-                  <div className="searchbar-input-spacer"></div>
-                  <input 
-                    type="text" 
-                    className="searchbar-input-skills" 
-                    name="q" 
-                    title="Search" 
-                    role="combobox" 
-                    placeholder={skillsFilter}
-                    onChange={(event) => setSkillsFilter(event.target.value)}
-                    />
+                <div className="searchbar-input-spacer"></div>
+                <input 
+                  type="text" 
+                  className="searchbar-input-skills" 
+                  name="q" 
+                  title="Search" 
+                  role="combobox" 
+                  placeholder= "search ..."
+                  value={skillsFilter}
+                  onChange={(event) => setSkillsFilter(event.target.value)}
+                  />
               </div>
           </div>
       </div>
+      <button type="submit" className="skills-clearall" onClick={handleSkillsClearAll}>Verwijder Skills</button>
     </div>
     )}
 
@@ -257,12 +259,14 @@ const SearchBar: React.FC = () => {
                   name="q" 
                   title="Search" 
                   role="combobox" 
-                  placeholder={functiesFilter}
+                  placeholder= "search ..."
+                  value={functiesFilter}
                   onChange={(event) => setFunctiesFilter(event.target.value)}
                   />
             </div>
         </div>
-      </div>
+      </div>      
+      <button type="submit" className="functies-clearall" onClick={handleFunctiesClearAll}>Verwijder Functies</button>
     </div>
     )} 
 

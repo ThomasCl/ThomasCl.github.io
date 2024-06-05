@@ -30,7 +30,9 @@ export interface json_user {
     profile_page: string;
 }
 
-
+export type ThemaCheckboxes = {
+    [key: string]: boolean;
+  };
 
 export interface profileBodyProps{
     biography: string;
