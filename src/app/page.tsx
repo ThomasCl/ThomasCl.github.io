@@ -7,7 +7,14 @@ import UserService from '../../services/UserService';
 import { json_user, ThemaCheckboxes } from '../../types';
 import { user } from '@nextui-org/react';
 import UserOverviewTable from '../../components/userOverview';
+import { useRouter } from 'next/navigation';
+
 const SearchBar: React.FC = () => {
+  const router = useRouter();
+  const clickProfile =  () => {
+    router.push('/profile');
+  };
+
   const [showThemasFilter, setShowThemasFilter] = useState(false);
   const [showSkillsFilter, setShowSkillsFilter] = useState(false);
   const [showFunctiesFilter, setShowFunctiesFilter] = useState(false);
@@ -135,7 +142,7 @@ const SearchBar: React.FC = () => {
                 onChange={(event) => setNameFilter(event.target.value)}
                 />
           </div>
-          <button type="submit" className="searchbar-submit">Zoek</button>
+          <button type="submit" className="searchbar-submit" onClick={clickProfile}>Zoek</button>
       </div>
     </div>
     <div className="checkbox-container">
