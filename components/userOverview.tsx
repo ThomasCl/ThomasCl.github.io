@@ -9,7 +9,7 @@ const UserOverviewTable: React.FC<Props> = ({ users }: Props) => {
     return (
         <>
             {users && users.map((user, index) => (
-                <div key={index} className="user-window" style={{ border: '1px solid #ccc', padding: '10px', marginBottom: '10px' }}>
+                <div key={index} className="user-window" style={{ border: '1px solid #ccc', backgroundColor: '#f9f9f9', padding: '10px', marginBottom: '10px' }}>
                     <div className="w-100 d-none d-md-block" />
                     <div className="col-6">
                         <table className="table table-hover">
