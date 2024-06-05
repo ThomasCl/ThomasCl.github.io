@@ -28,19 +28,16 @@ const getUsers = (
 
     return users.filter((user) => {
         const naam = user.voornaam + " " + user.achternaam
+        const requestedFuncties = functies ? functies.toLowerCase().split(" ") : [];
+        const requestedSkills = skills ? skills.toLowerCase().split(" ") : [];
 
-        let passName = !name || naam.toLowerCase().includes(name.toLowerCase());
-        let passFuncties = !functies || user.huidige_functie.toLowerCase().includes(functies.toLowerCase());
-        let passThemas = !themas || !themas.length || themas.some(thema => user.themas.includes(thema));
-        let passSkills = !skills || user.skills.toLowerCase().includes(skills.toLowerCase());
+        const passName = !name || naam.toLowerCase().includes(name.toLowerCase());
+        const passFuncties = !functies || requestedFuncties.every(requestedFunctie => user.huidige_functie.toLowerCase().includes(requestedFunctie));
+        const passThemas = !themas || !themas.length || themas.some(thema => user.themas.includes(thema));
+        const passSkills = !skills || requestedSkills.every(requestedSkill => user.skills.toLowerCase().includes(requestedSkill));
         let passUrbanLabRelated = true
         if(urbanLabRelated){passUrbanLabRelated = user.urban_lab_related === urbanLabRelated}
         else{passUrbanLabRelated = true}
-        // let passUrbanLabRelated = urbanLabRelated === undefined || user.urban_lab_related === urbanLabRelated;
-        
-        console.log(`User: ${naam}`);
-        console.log(`- passThemas: ${passThemas} (User themas: ${user.themas}, Filter themas: ${themas})`);
-        console.log(`- passUrbanLabRelated: ${passUrbanLabRelated}`);
 
         return passName && passFuncties && passThemas && passSkills && passUrbanLabRelated;
     });
