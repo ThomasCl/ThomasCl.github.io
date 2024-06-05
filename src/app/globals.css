@@ -346,3 +346,27 @@ body {
 .radio-input label:nth-child(3):has(input:checked) ~ .selection {
   transform: translateX(calc(var(--container_width) * 2/3));
 }
+
+
+.themas-filter {
+  width: 400px; /* Adjust width as needed */
+}
+
+.themas-checkbox-group > div {
+  margin-bottom: 10px; /* Adjust spacing between themes */
+  padding: 10px;
+  border-radius: 10px; /* Make the borders rounded */
+}
+.spacer {
+  height: 20px; /* Adjust the height as needed */
+}
+
+.divider {
+  width: 100%;
+  border-top: 2px solid #ccc;
+  margin: 10px 0; /* Adjust the margin as needed */
+}
+
+.thema-box {
+  cursor: pointer;
+}

@@ -177,44 +177,31 @@ const SearchBar: React.FC = () => {
     </div>
     
 
-    {showThemasFilter && (
-    <div className="themas-filter">
-        <h3>Thema's</h3>
-        <div className="searchbar">
-        <div className="searchbar-wrapper">
-            <div className="searchbar-left">
-                <div className="search-icon-wrapper">
-                    <span className="search-icon searchbar-icon">
-                        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24">
-                            <path d="M15.5 14h-.79l-.28-.27A6.471 6.471 0 0 0 16 9.5 6.5 6.5 0 1 0 9.5 16c1.61 0 3.09-.59 4.23-1.57l.27.28v.79l5 4.99L20.49 19l-4.99-5zm-6 0C7.01 14 5 11.99 5 9.5S7.01 5 9.5 5 14 7.01 14 9.5 11.99 14 9.5 14z">
-                            </path>
-                        </svg>
-                    </span>
-                </div>
-            </div>
+  {showThemasFilter && (
+  <div className="themas-filter" style={{ width: "80vw" }}>
+    <h3>Thema's</h3>
+    <div className="themas-checkbox-group">
+      {themas.map((thema, index) => (
+        <div
+          key={index}
+          className={`${thema} rounded thema-box`}
+          style={{ border: `1px solid black`, background: `${themaCheckboxes[thema] ? "teal" : "white"}` }}
+          onClick={() => handleThemaCheckboxChange({ target: { id: thema, checked: !themaCheckboxes[thema] } })}
+        >
+          {thema}
+        </div>
+      ))}
+      <div className="spacer"></div>
+      <hr className="divider" />
+      <button type="submit" className="themas-clearall" onClick={handleThemaClearAll}>Verwijder thema's</button>
+    </div>
+  </div>
+)}
 
-            <div className="searchbar-center">
-                <div className="searchbar-input-spacer"></div>
-                <input type="text" className="searchbar-input-themas" name="q" title="Search" role="combobox" placeholder="Zoek..."/>
-            </div>
-        </div>
-      </div>
-      <div className="themas-checkbox-group">
-            {themas.map((thema, index) => (
-              <div key={index} className={thema}>
-                <input 
-                  type="checkbox" 
-                  id={thema} 
-                  checked={themaCheckboxes[thema]} 
-                  onChange={handleThemaCheckboxChange} 
-                />
-                <label htmlFor={thema}>{thema}</label>
-              </div>
-            ))}
-          </div>
-          <button type="submit" className="themas-clearall" onClick={handleThemaClearAll}>Verwijder thema's</button>
-        </div>
-      )}
+
+
+
+
 
     {showSkillsFilter && (
     <div className="skills-filter">
