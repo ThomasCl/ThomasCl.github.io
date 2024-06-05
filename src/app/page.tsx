@@ -62,6 +62,11 @@ const SearchBar: React.FC = () => {
     }));
   };
 
+  const handleUrbanCheckboxChange = () => {
+    if(relatedFilter){setrelatedFilter(false)}
+    else{setrelatedFilter(true)}
+  }
+
   const getAllUsers = async () => {
     setUsers(UserService.getAllUsers());
   }
@@ -91,13 +96,12 @@ const SearchBar: React.FC = () => {
     themas.forEach(thema => {
       if(themaCheckboxes[thema]){themasFilter.push(thema);}});
     
-    console.log(themasFilter)
-    // themas.forEach(thema => {console.log(thema + themaCheckboxes[thema])});
     getUser(
       nameFilter,
       functiesFilter, 
       themasFilter, 
-      skillsFilter)
+      skillsFilter, 
+      relatedFilter)
   }, [nameFilter, functiesFilter, themaCheckboxes, skillsFilter, relatedFilter])
 
 
@@ -139,7 +143,12 @@ const SearchBar: React.FC = () => {
       </div>
     </div>
     <div className="checkbox-container">
-      <input type="checkbox" id="myCheckbox"/>
+      <input 
+        type="checkbox" 
+        id="myCheckbox"
+        checked={relatedFilter}
+        onChange={handleUrbanCheckboxChange}
+        />
       <label>
         Is de persoon urbanlab gerelateerd?
       </label>
