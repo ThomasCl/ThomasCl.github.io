@@ -141,12 +141,11 @@ const SearchBar: React.FC = () => {
                 name="q" 
                 title="Search" 
                 role="combobox" 
-                placeholder= "search ..."
-                value={functiesFilter}  
+                placeholder= "Zoek op naam..."
+                value={nameFilter}  
                 onChange={(event) => setNameFilter(event.target.value)}
                 />
           </div>
-          <button type="submit" className="searchbar-submit" onClick={clickProfile}>Zoek</button>
       </div>
     </div>
     <div className="checkbox-container">

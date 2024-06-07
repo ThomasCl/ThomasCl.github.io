@@ -72,14 +72,15 @@ const Profile : React.FC<Props> = ({user}) => {
       <div className="profile-info">
         <h2>{voornaam} {achternaam}</h2>
         <p>{profiel_foto}</p>
-        <p>{institutie}</p>
-        <p>{skills}</p>
-        <p>urbanlab gerelateerd: {urban_lab_related}</p>
-        <p>{themas.join(', ')}</p>
-        <p>{kring}</p>
-        <p>{email}</p>
-        <p>{phone_number}</p>
-        <p>{profile_page}</p>
+        <p><b>institutie:</b> {institutie}</p>
+        <p><b>skills:</b> {skills}</p>
+        <p><b>urbanlab gerelateerd:</b> {urban_lab_related}</p>
+        <p><b>thema's:</b> {themas.join(', ')}</p>
+        <p><b>kring:</b> {kring}</p>
+        <p><b>email:</b> {email}</p>
+        <p><b>telefoonnummer:</b> {phone_number}</p>
+        <p><b>ResearchGate link:</b> <a href={profile_page}>ResearchGate.net</a></p>
+
       </div>
     </div>
     </>
