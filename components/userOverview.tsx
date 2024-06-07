@@ -1,11 +1,30 @@
 import React from 'react';
 import { json_user } from '../types';
+import { useRouter } from 'next/navigation';
 
 type Props = {
     users: json_user[];
 }
 
 const UserOverviewTable: React.FC<Props> = ({ users }: Props) => {
+    const router = useRouter();
+    const handleUserClick = (
+        userVoornaam: string,
+        userAchternaam: string,
+        userFunctie: string,
+        userSkills: string,
+        userThemas: string[]
+    ) => {
+        const userInfo = {
+            voornaam: userVoornaam,
+            achternaam: userAchternaam,
+            huidige_functie: userFunctie,
+            skills: userSkills,
+            themas: userThemas
+        };
+        sessionStorage.setItem('selectedUser', JSON.stringify(userInfo));
+        router.push('/profile');
+    };
     return (
         <>
             {users && users.map((user, index) => (
@@ -23,7 +42,11 @@ const UserOverviewTable: React.FC<Props> = ({ users }: Props) => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style={{ borderRight: '1px solid #ccc', verticalAlign: 'middle', textAlign: 'center' }}>{user.voornaam} {user.achternaam}</td>
+                                    <td style={{ borderRight: '1px solid #ccc', verticalAlign: 'middle', textAlign: 'center' }}>
+                                        <button style={{ background: 'none', border: 'none', color: 'blue', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleUserClick(user.voornaam, user.achternaam, user.huidige_functie, user.skills, user.themas)}>
+                                            {user.voornaam} {user.achternaam}
+                                        </button>
+                                    </td>
                                     <td style={{ borderRight: '1px solid #ccc' }}>{user.huidige_functie}</td>
                                     <td style={{ borderRight: '1px solid #ccc' }}>{user.skills}</td>
                                     <td>{user.themas.map((thema, index) => (

@@ -32,15 +32,4 @@ export interface json_user {
 
 export type ThemaCheckboxes = {
     [key: string]: boolean;
-  };
-
-export interface profileBodyProps{
-    biography: string;
-    skills: string[];
-}
-export interface profileHeaderProps{
-    name: string;
-    title: string;
-    institution: string;
-
-}
+};

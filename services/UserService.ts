@@ -43,10 +43,32 @@ const getUsers = (
     });
 };
 
+const getUserWithAllInfo = (
+    voornaam: string,
+    achternaam: string,
+    huidige_functie: string,
+    skills: string,
+    themas: string[],
+): json_user => {
+    const foundUser = users.find(user => 
+        user.voornaam === voornaam &&
+        user.achternaam === achternaam &&
+        user.huidige_functie === huidige_functie &&
+        user.skills === skills &&
+        user.themas.every(thema => themas.includes(thema)) &&
+        themas.every(thema => user.themas.includes(thema))
+    );
+
+    if (!foundUser) {
+        throw new Error(`Gebruiker met voornaam ${voornaam} en achternaam ${achternaam} niet gevonden.`);
+    }
+    return foundUser;
+};
 
 const UserService = {
     getAllUsers,
     getUsers,
     getAllThemas,
+    getUserWithAllInfo
 }
 export default UserService
