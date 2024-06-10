@@ -48,7 +48,7 @@ const Profile : React.FC<Props> = () => {
       <div className="profile-left">
         <div className="profile-bio">
           <h2>Biografie:</h2>
-          <p>bio</p>
+          <p>{user.bio}</p>
         </div>
         <div className="profile-publications">
           <h2>publicaties:</h2>
@@ -66,7 +66,7 @@ const Profile : React.FC<Props> = () => {
         <p>{user.profiel_foto ? <img src={user.profiel_foto} alt="Profielfoto" /> : "Geen profielfoto beschikbaar"}</p>
         <p><b>institutie:</b> {user.institutie ? user.institutie : "/"}</p>
         <p><b>skills:</b> {user.skills ? user.skills : "/"}</p>
-        <p><b>urbanlab gerelateerd:</b> {user.urban_lab_related ? "ja" : "nee"}</p>
+        <p><b>Nam deel aan UrbanLab Activiteit:</b> {user.urban_lab_related ? "Ja" : "Nee"}</p>
         <p><b>thema's:</b> {user.themas && user.themas.length > 0 ? user.themas.join(", ") : "/"}</p>
         <p><b>email:</b> {user.email ? user.email : "/"}</p>
         <p><b>telefoonnummer:</b> {user.phone_number ? user.phone_number : "/"}</p>
