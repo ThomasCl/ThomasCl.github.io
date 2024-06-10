@@ -28,12 +28,9 @@ const Profile : React.FC<Props> = ({user}) => {
 
   useEffect(() => {
     const storedUser = sessionStorage.getItem('selectedUser');
-    console.log('userprop', storedUser)
     if (storedUser) {
       const parsedUser = JSON.parse(storedUser);
-      console.log('parsedUser', parsedUser)
       const foundedUser = userService.getUserWithAllInfo(parsedUser.voornaam, parsedUser.achternaam, parsedUser.huidige_functie, parsedUser.skills, parsedUser.themas); 
-      console.log('foundedUser', foundedUser) 
       if (foundedUser) {
         setVoornaam(foundedUser.voornaam);
         setAchternaam(foundedUser.achternaam);
@@ -45,7 +42,7 @@ const Profile : React.FC<Props> = ({user}) => {
         setSkills(foundedUser.skills);
         setThemas(foundedUser.themas);
         setKring(foundedUser.kring);
-        setUrban_lab_related(foundedUser.urban_lab_related);
+        setUrban_lab_related(foundedUser.urban_lab_related)
         setBio(foundedUser.bio);
         setProfile_page(foundedUser.profile_page);
       }
@@ -71,16 +68,14 @@ const Profile : React.FC<Props> = ({user}) => {
       </div>
       <div className="profile-info">
         <h2>{voornaam} {achternaam}</h2>
-        <p>{profiel_foto}</p>
-        <p><b>institutie:</b> {institutie}</p>
-        <p><b>skills:</b> {skills}</p>
-        <p><b>urbanlab gerelateerd:</b> {urban_lab_related}</p>
-        <p><b>thema's:</b> {themas.join(', ')}</p>
-        <p><b>kring:</b> {kring}</p>
-        <p><b>email:</b> {email}</p>
-        <p><b>telefoonnummer:</b> {phone_number}</p>
-        <p><b>ResearchGate link:</b> <a href={profile_page}>ResearchGate.net</a></p>
-
+        <p>{profiel_foto ? <img src={profiel_foto} alt="Profielfoto" /> : "Geen profielfoto beschikbaar"}</p>
+        <p><b>institutie:</b> {institutie ? institutie : "/"}</p>
+        <p><b>skills:</b> {skills ? skills : "/"}</p>
+        <p><b>urbanlab gerelateerd:</b> {urban_lab_related ? urban_lab_related : "/"}</p>
+        <p><b>thema's:</b> {themas && themas.length > 0 ? themas.join(", ") : "/"}</p>
+        <p><b>email:</b> {email ? email : "/"}</p>
+        <p><b>telefoonnummer:</b> {phone_number ? phone_number : "/"}</p>
+        <p><b>ResearchGate link:</b> {profile_page? <a href={profile_page}>ResearchGate.net</a> : "/"}</p>
       </div>
     </div>
     </>

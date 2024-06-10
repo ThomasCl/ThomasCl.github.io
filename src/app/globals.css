@@ -445,3 +445,13 @@ body {
     left: unset;
   }
 }
+
+.profile-info p {
+  border-bottom: 1px solid #a9a9a9; /* Onderste rand */
+  padding: 10px;
+  margin: 0; /* Geen marge zodat de kaders overlopen */
+}
+
+.profile-info p:first-of-type {
+  border-top: 1px solid #a9a9a9; /* Bovenste rand alleen voor het eerste element */
+}
