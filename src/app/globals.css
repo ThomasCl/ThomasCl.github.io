@@ -455,3 +455,11 @@ body {
 .profile-info p:first-of-type {
   border-top: 1px solid #a9a9a9; /* Bovenste rand alleen voor het eerste element */
 }
+
+.fixed-width {
+  width: 25%; /* Pas deze waarde aan naar behoefte */
+  border-right: 1px solid #ccc;
+  text-align: center;
+  vertical-align: middle;
+}
+
