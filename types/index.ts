@@ -28,6 +28,12 @@ export interface json_user {
     urban_lab_related: boolean;
     bio: string;
     profile_page: string;
+    publicaties: publicatie[];
+}
+export interface publicatie{
+    title:string;
+    description: string;
+    link: string;    
 }
 
 export type ThemaCheckboxes = {

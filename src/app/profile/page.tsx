@@ -1,5 +1,5 @@
 "use client"
-import React from 'react';
+import React, { use } from 'react';
 import Header from '../../../components/navbar'
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
@@ -10,21 +10,9 @@ type Props = {
   user: json_user;
 }
 
-const Profile : React.FC<Props> = ({user}) => {
+const Profile : React.FC<Props> = () => {
   const router = useRouter();
-  const [voornaam, setVoornaam] = useState<string>("");
-  const [achternaam, setAchternaam] = useState<string>("");
-  const [profiel_foto, setProfiel_foto] = useState<string>("");
-  const [institutie, setInstitutie] = useState<string>("");
-  const [huidige_functie, setHuidige_functie] = useState<string>("");
-  const [email, setEmail] = useState<string>("");
-  const [phone_number, setPhone_number] = useState<string>("");
-  const [skills, setSkills] = useState<string>("");
-  const [themas, setThemas] = useState<string[]>([]);
-  const [kring, setKring] = useState<string>("");
-  const [urban_lab_related, setUrban_lab_related] = useState<boolean>(false);
-  const [bio, setBio] = useState<string>("");
-  const [profile_page, setProfile_page] = useState<string>("");
+  const [user, setUser] = useState<json_user>()
 
   useEffect(() => {
     const storedUser = sessionStorage.getItem('selectedUser');
@@ -32,25 +20,30 @@ const Profile : React.FC<Props> = ({user}) => {
       const parsedUser = JSON.parse(storedUser);
       const foundedUser = userService.getUserWithAllInfo(parsedUser.voornaam, parsedUser.achternaam, parsedUser.huidige_functie, parsedUser.skills, parsedUser.themas); 
       if (foundedUser) {
-        setVoornaam(foundedUser.voornaam);
-        setAchternaam(foundedUser.achternaam);
-        setProfiel_foto(foundedUser.profiel_foto);
-        setInstitutie(foundedUser.institutie);
-        setHuidige_functie(foundedUser.huidige_functie);
-        setEmail(foundedUser.email);
-        setPhone_number(foundedUser.phone_number);
-        setSkills(foundedUser.skills);
-        setThemas(foundedUser.themas);
-        setKring(foundedUser.kring);
-        setUrban_lab_related(foundedUser.urban_lab_related)
-        setBio(foundedUser.bio);
-        setProfile_page(foundedUser.profile_page);
+        const newUser: json_user = {
+          voornaam: foundedUser.voornaam,
+          achternaam: foundedUser.achternaam,
+          profiel_foto: foundedUser.profiel_foto,
+          institutie: foundedUser.institutie,
+          huidige_functie: foundedUser.huidige_functie,
+          email: foundedUser.email,
+          phone_number: foundedUser.phone_number,
+          skills: foundedUser.skills,
+          themas: foundedUser.themas,
+          kring: foundedUser.kring,
+          urban_lab_related: foundedUser.urban_lab_related,
+          bio: foundedUser.bio,
+          profile_page: foundedUser.profile_page,
+          publicaties: foundedUser.publicaties
+        };
+        setUser(newUser);
       }
     }
   }, []);
   return (
     <>
     <Header></Header>
+    {user != undefined && (
     <div className="profile-container">
       <div className="profile-left">
         <div className="profile-bio">
@@ -60,24 +53,27 @@ const Profile : React.FC<Props> = ({user}) => {
         <div className="profile-publications">
           <h2>publicaties:</h2>
           <ul>
-            <li>publicatie1</li>
-            <li>publicatie2</li>
-            <li>publicatie3</li>
+          {user.publicaties && user.publicaties.map((publicatie, index) => (
+            <li>
+              <a href={publicatie.link}>{publicatie.title}</a>
+              <p>{publicatie.description}</p>
+            </li>))}
           </ul>
         </div>
       </div>
       <div className="profile-info">
-        <h2>{voornaam} {achternaam}</h2>
-        <p>{profiel_foto ? <img src={profiel_foto} alt="Profielfoto" /> : "Geen profielfoto beschikbaar"}</p>
-        <p><b>institutie:</b> {institutie ? institutie : "/"}</p>
-        <p><b>skills:</b> {skills ? skills : "/"}</p>
-        <p><b>urbanlab gerelateerd:</b> {urban_lab_related ? urban_lab_related : "/"}</p>
-        <p><b>thema's:</b> {themas && themas.length > 0 ? themas.join(", ") : "/"}</p>
-        <p><b>email:</b> {email ? email : "/"}</p>
-        <p><b>telefoonnummer:</b> {phone_number ? phone_number : "/"}</p>
-        <p><b>ResearchGate link:</b> {profile_page? <a href={profile_page}>ResearchGate.net</a> : "/"}</p>
+        <h2>{user.voornaam} {user.achternaam}</h2>
+        <p>{user.profiel_foto ? <img src={user.profiel_foto} alt="Profielfoto" /> : "Geen profielfoto beschikbaar"}</p>
+        <p><b>institutie:</b> {user.institutie ? user.institutie : "/"}</p>
+        <p><b>skills:</b> {user.skills ? user.skills : "/"}</p>
+        <p><b>urbanlab gerelateerd:</b> {user.urban_lab_related ? "ja" : "nee"}</p>
+        <p><b>thema's:</b> {user.themas && user.themas.length > 0 ? user.themas.join(", ") : "/"}</p>
+        <p><b>email:</b> {user.email ? user.email : "/"}</p>
+        <p><b>telefoonnummer:</b> {user.phone_number ? user.phone_number : "/"}</p>
+        <p><b>ResearchGate link:</b> {user.profile_page? <a href={user.profile_page}>Researchgate.net/profile/{user.voornaam}_{user.achternaam}</a> : "/"}</p>
       </div>
     </div>
+      )}
     </>
   );
 };

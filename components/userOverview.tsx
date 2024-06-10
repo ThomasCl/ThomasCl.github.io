@@ -9,20 +9,10 @@ type Props = {
 const UserOverviewTable: React.FC<Props> = ({ users }: Props) => {
     const router = useRouter();
     const handleUserClick = (
-        userVoornaam: string,
-        userAchternaam: string,
-        userFunctie: string,
-        userSkills: string,
-        userThemas: string[]
+        user: json_user
     ) => {
-        const userInfo = {
-            voornaam: userVoornaam,
-            achternaam: userAchternaam,
-            huidige_functie: userFunctie,
-            skills: userSkills,
-            themas: userThemas
-        };
-        sessionStorage.setItem('selectedUser', JSON.stringify(userInfo));
+        console.log(user);
+        sessionStorage.setItem('selectedUser', JSON.stringify(user));
         router.push('/profile');
     };
     return (
@@ -43,7 +33,7 @@ const UserOverviewTable: React.FC<Props> = ({ users }: Props) => {
                             <tbody>
                                 <tr>
                                     <td style={{ borderRight: '1px solid #ccc', verticalAlign: 'middle', textAlign: 'center' }}>
-                                        <button style={{ background: 'none', border: 'none', color: 'blue', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleUserClick(user.voornaam, user.achternaam, user.huidige_functie, user.skills, user.themas)}>
+                                        <button style={{ background: 'none', border: 'none', color: 'blue', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleUserClick(user)}>
                                             {user.voornaam} {user.achternaam}
                                         </button>
                                     </td>
