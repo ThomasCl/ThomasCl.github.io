@@ -1,6 +1,7 @@
 "use client"
 import React, { use } from 'react';
 import Header from '../../../components/navbar'
+import Image from 'next/image';
 import { useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { json_user } from '../../../types';
@@ -61,7 +62,8 @@ const Profile : React.FC = () => {
       </div>
       <div className="profile-info">
         <h2>{user.voornaam} {user.achternaam}</h2>
-        <p>{user.profiel_foto ? <img src={user.profiel_foto} alt="Profielfoto" /> : "Geen profielfoto beschikbaar"}</p>
+        <p>{user.profiel_foto ? (<div style={{ position: 'relative', width: 'auto', height: '200px' }}><Image src={user.profiel_foto} alt="Profielfoto" layout="fill" objectFit="contain" /></div>) : ("Geen profielfoto beschikbaar")}
+        </p>
         <p><b>institutie:</b> {user.institutie ? user.institutie : "/"}</p>
         <p><b>skills:</b> {user.skills ? user.skills : "/"}</p>
         <p><b>Nam deel aan UrbanLab Activiteit:</b> {user.urban_lab_related ? "Ja" : "Nee"}</p>
