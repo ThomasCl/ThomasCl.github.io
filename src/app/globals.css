@@ -144,6 +144,7 @@ body {
   border-radius: 10px;
   width: 320px;
   margin: 0 auto; /* Centreer de div horizontaal */
+  margin-bottom: 10px;
 }
 
 /* Stijl voor de thema-bar input */
@@ -456,10 +457,25 @@ body {
   border-top: 1px solid #a9a9a9; /* Bovenste rand alleen voor het eerste element */
 }
 
-.fixed-width {
-  width: 25%; /* Pas deze waarde aan naar behoefte */
+.fixed-table {
+  width: 100%;
+  table-layout: fixed;
+}
+
+.fixed-table th,
+.fixed-table td {
+  width: 25%;
   border-right: 1px solid #ccc;
   text-align: center;
   vertical-align: middle;
 }
 
+.fixed-table th:last-child,
+.fixed-table td:last-child {
+  border-right: none;
+}
+
+.fixed-table tbody tr:hover td {
+  background-color: #ccccccbd;
+  color: black; /* Optional: Change text color on hover for better visibility */
+}
