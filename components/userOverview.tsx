@@ -21,7 +21,7 @@ const UserOverviewTable: React.FC<Props> = ({ users }: Props) => {
                 <div key={index} className="user-window" style={{ border: '1px solid #ccc', backgroundColor: '#f9f9f9', padding: '10px', marginBottom: '10px' }}>
                     <div className="w-100 d-none d-md-block" />
                     <div className="col-6">
-                        <table className="table table-hover">
+                        <table className="table table-hover fixed-table">
                             <thead>
                                 <tr>
                                     <th scope="col">Naam</th>
@@ -32,14 +32,14 @@ const UserOverviewTable: React.FC<Props> = ({ users }: Props) => {
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td style={{ borderRight: '1px solid #ccc', verticalAlign: 'middle', textAlign: 'center' }}>
+                                    <td className="fixed-width" style={{ borderRight: '1px solid #ccc', verticalAlign: 'middle', textAlign: 'center' }}>
                                         <button style={{ background: 'none', border: 'none', color: 'blue', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleUserClick(user)}>
                                             {user.voornaam} {user.achternaam}
                                         </button>
                                     </td>
-                                    <td style={{ borderRight: '1px solid #ccc' }}>{user.huidige_functie}</td>
-                                    <td style={{ borderRight: '1px solid #ccc' }}>{user.skills}</td>
-                                    <td>{user.themas.map((thema, index) => (
+                                    <td className="fixed-width" style={{ borderRight: '1px solid #ccc' }}>{user.huidige_functie}</td>
+                                    <td className="fixed-width" style={{ borderRight: '1px solid #ccc' }}>{user.skills}</td>
+                                    <td className="fixed-width">{user.themas.map((thema, index) => (
                                         <span key={index}>{thema}{index < user.themas.length - 1 && ', '}</span>
                                     ))}</td>
                                 </tr>
