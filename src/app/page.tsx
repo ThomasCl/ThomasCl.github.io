@@ -156,12 +156,13 @@ const SearchBar: React.FC = () => {
         onChange={handleUrbanCheckboxChange}
         />
       <label>
-        Is de persoon urbanlab gerelateerd?
+        Heeft de persoon al deelgenomen aan een UrbanLab activiteit?
       </label>
     </div>
+    
     <div className="radio-input">
       <label>
-      <input type="radio" id="themas" name="value-radio" value="themas" onClick={handleThemasClick}/>
+      <input type="radio" id="themas" name="value-radio" value="themas" onClick={handleThemasClick} />
       <span>Thema's</span>
       </label>
       <label>
@@ -233,7 +234,7 @@ const SearchBar: React.FC = () => {
               </div>
           </div>
       </div>
-      <button type="submit" className="skills-clearall" onClick={handleSkillsClearAll}>Verwijder Skills</button>
+      <button type="submit" className="skills-clearall" onClick={handleSkillsClearAll}>Verwijder skills</button>
     </div>
     )}
 
@@ -268,7 +269,7 @@ const SearchBar: React.FC = () => {
             </div>
         </div>
       </div>      
-      <button type="submit" className="functies-clearall" onClick={handleFunctiesClearAll}>Verwijder Functies</button>
+      <button type="submit" className="functies-clearall" onClick={handleFunctiesClearAll}>Verwijder functies</button>
     </div>
     )} 
 
