@@ -6,11 +6,9 @@ import { useEffect, useState } from 'react';
 import { json_user } from '../../../types';
 import userService  from '../../../services/UserService';
 
-type Props = {
-  user: json_user;
-}
 
-const Profile : React.FC<Props> = () => {
+
+const Profile : React.FC = () => {
   const router = useRouter();
   const [user, setUser] = useState<json_user>()
 
@@ -54,7 +52,7 @@ const Profile : React.FC<Props> = () => {
           <h2>publicaties:</h2>
           <ul>
           {user.publicaties && user.publicaties.map((publicatie, index) => (
-            <li>
+            <li key={index}>
               <a href={publicatie.link}>{publicatie.title}</a>
               <p>{publicatie.description}</p>
             </li>))}
