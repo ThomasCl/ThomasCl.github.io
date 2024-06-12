@@ -18,7 +18,7 @@ const UserOverviewTable: React.FC<Props> = ({ users }: Props) => {
     return (
         <>
             {users && users.map((user, index) => (
-                <div key={index} className="user-window" style={{ border: '1px solid #ccc', backgroundColor: '#f9f9f9', padding: '10px', marginBottom: '10px' }}>
+                <button key={index} className="user-window" style={{ border: '1px solid #ccc', backgroundColor: '#f9f9f9', padding: '10px', marginBottom: '10px', cursor: 'pointer' }}onClick={() => handleUserClick(user)}>
                     <div className="w-100 d-none d-md-block" />
                     <div className="col-6">
                         <table className="table table-hover fixed-table">
@@ -33,9 +33,9 @@ const UserOverviewTable: React.FC<Props> = ({ users }: Props) => {
                             <tbody>
                                 <tr>
                                     <td className="fixed-width" style={{ borderRight: '1px solid #ccc', verticalAlign: 'middle', textAlign: 'center' }}>
-                                        <button style={{ background: 'none', border: 'none', color: 'blue', textDecoration: 'underline', cursor: 'pointer' }} onClick={() => handleUserClick(user)}>
+                                        <div style={{ background: 'none', border: 'none', cursor: 'pointer' }} onClick={() => handleUserClick(user)}>
                                             {user.voornaam} {user.achternaam}
-                                        </button>
+                                        </div>
                                     </td>
                                     <td className="fixed-width" style={{ borderRight: '1px solid #ccc' }}>{user.huidige_functie}</td>
                                     <td className="fixed-width" style={{ borderRight: '1px solid #ccc' }}>{user.skills}</td>
@@ -46,7 +46,7 @@ const UserOverviewTable: React.FC<Props> = ({ users }: Props) => {
                             </tbody>
                         </table>
                     </div>
-                </div>
+                </button>
             ))}
         </>
     )

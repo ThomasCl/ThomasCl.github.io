@@ -7,13 +7,8 @@ import UserService from '../../services/UserService';
 import { json_user, ThemaCheckboxes } from '../../types';
 import { user } from '@nextui-org/react';
 import UserOverviewTable from '../../components/userOverview';
-import { useRouter } from 'next/navigation';
 
 const SearchBar: React.FC = () => {
-  const router = useRouter();
-  const clickProfile =  () => {
-    router.push('/profile');
-  };
 
   const [showThemasFilter, setShowThemasFilter] = useState(false);
   const [showSkillsFilter, setShowSkillsFilter] = useState(false);
@@ -87,6 +82,11 @@ const SearchBar: React.FC = () => {
 
   useEffect(() => {
     getAllUsers();
+    setShowThemasFilter(true);  
+    const button = document.getElementById('themas');
+    if (button) {
+      button.click();
+    }
 
     const fetchedThemas = UserService.getAllThemas();
     setThemas(fetchedThemas);
