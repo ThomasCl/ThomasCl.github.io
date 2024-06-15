@@ -166,8 +166,8 @@ const SearchBar: React.FC = () => {
       <span>Thema's</span>
       </label>
       <label>
-        <input type="radio" id="skills" name="value-radio" value="skills" onClick={handleSkillsClick}/>
-      <span>Skills</span>
+        <input type="radio" id="skills" name="value-radio" value="specialisatie" onClick={handleSkillsClick}/>
+      <span>Specialisaties</span>
       </label>
       <label>
         <input type="radio" id="functies" name="value-radio" value="functies" onClick={handleFunctiesClick}/>
@@ -205,7 +205,7 @@ const SearchBar: React.FC = () => {
 
     {showSkillsFilter && (
     <div className="skills-filter">
-        <h3>Skills</h3>
+        <h3>Specialisaties</h3>
         <div className="searchbar">
           <div className="searchbar-wrapper">
               <div className="searchbar-left">
@@ -227,14 +227,14 @@ const SearchBar: React.FC = () => {
                   name="q" 
                   title="Search" 
                   role="combobox" 
-                  placeholder= "search ..."
+                  placeholder= "Zoek..."
                   value={skillsFilter}
                   onChange={(event) => setSkillsFilter(event.target.value)}
                   />
               </div>
           </div>
       </div>
-      <button type="submit" className="skills-clearall" onClick={handleSkillsClearAll}>Verwijder skills</button>
+      <button type="submit" className="skills-clearall" onClick={handleSkillsClearAll}>Verwijder Specialisaties</button>
     </div>
     )}
 
@@ -262,7 +262,7 @@ const SearchBar: React.FC = () => {
                   name="q" 
                   title="Search" 
                   role="combobox" 
-                  placeholder= "search ..."
+                  placeholder= "Zoek..."
                   value={functiesFilter}
                   onChange={(event) => setFunctiesFilter(event.target.value)}
                   />
