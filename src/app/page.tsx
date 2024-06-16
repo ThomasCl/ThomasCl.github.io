@@ -82,11 +82,11 @@ const SearchBar: React.FC = () => {
 
   useEffect(() => {
     getAllUsers();
-    // setShowThemasFilter(true);  
-    // const button = document.getElementById('themas');
-    // if (button) {
-    //   button.click();
-    // }
+    setShowSkillsFilter(true);  
+    const button = document.getElementById('skills');
+    if (button) {
+      button.click();
+    }
 
     const fetchedThemas = UserService.getAllThemas();
     setThemas(fetchedThemas);
