@@ -22,7 +22,7 @@ const getAllThemas = (): string[] => {
         "Governance",
         "Inclusie & Sociale Rechtvaardigheid",
         "Klimaatadaptieve Stad",
-        "Methodologie en Data",
+        "Methodologie & Data",
         "Mobiele Stad",
         "Voeding voor de Stad"]
 }
