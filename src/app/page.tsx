@@ -178,7 +178,7 @@ const SearchBar: React.FC = () => {
     
 
   {showThemasFilter && (
-  <div className="themas-filter" style={{ width: "80vw" }}>
+  <div className="themas-filter" style={{ width: "40vw" }}>
     <h3>Thema's</h3>
     <div className="themas-checkbox-group">
       {themas.map((thema, index) => (

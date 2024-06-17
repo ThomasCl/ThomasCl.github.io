@@ -7,17 +7,28 @@ const getAllUsers = (): json_user[] => {
 }
 
 const getAllThemas = (): string[] => {
-    let themas = new Set<string>();
-    getAllUsers().forEach(user => {
-        user.themas.forEach(thema => {
-            if (thema !== "") {
-                themas.add(thema);
-            }
-        });
-    });
-    return Array.from(themas);
+    // let themas = new Set<string>();
+    // getAllUsers().forEach(user => {
+    //     user.themas.forEach(thema => {
+    //         if (thema !== "") {
+    //             themas.add(thema);
+    //         }
+    //     });
+    // });
+    // return Array.from(themas);
+    return ["Circulaire Stad",
+        "Energieneutrale Stad",
+        "Financiële Hefbomen",
+        "Governance",
+        "Inclusie & Sociale Rechtvaardigheid",
+        "Klimaatadaptieve Stad",
+        "Methodologie en Data",
+        "Mobiele Stad",
+        "Voeding voor de Stad"]
 }
-
+const normalizeString = (str:string) => {
+    return str.normalize('NFD').replace(/[\u0300-\u036f]/g, "").toLowerCase();
+};
 
 const getUsers = (
     name?: string,
@@ -27,14 +38,14 @@ const getUsers = (
     urbanLabRelated?:boolean): json_user[] => {
 
     return users.filter((user) => {
-        const naam = user.voornaam + " " + user.achternaam
-        const requestedFuncties = functies ? functies.toLowerCase().split(" ") : [];
-        const requestedSkills = skills ? skills.toLowerCase().split(" ") : [];
+        const naam = normalizeString(user.voornaam + " " + user.achternaam)
+        const requestedFuncties = functies ? normalizeString(functies).split(" ") : [];
+        const requestedSkills = skills ? normalizeString(skills).split(" ") : [];
 
-        const passName = !name || naam.toLowerCase().includes(name.toLowerCase());
-        const passFuncties = !functies || requestedFuncties.every(requestedFunctie => user.huidige_functie.toLowerCase().includes(requestedFunctie));
-        const passThemas = !themas || !themas.length || themas.some(thema => user.themas.includes(thema));
-        const passSkills = !skills || requestedSkills.every(requestedSkill => user.skills.toLowerCase().includes(requestedSkill));
+        const passName = !name || naam.includes(normalizeString(name));
+        const passFuncties = !functies || requestedFuncties.every(requestedFunctie => normalizeString(user.huidige_functie).includes(requestedFunctie));        
+        const passThemas = !themas || !themas.length || themas.some(thema => user.themas.map(t => normalizeString(t)).some(userThema => userThema.includes(normalizeString(thema))));
+        const passSkills = !skills || requestedSkills.every(requestedSkill => normalizeString(user.skills).includes(requestedSkill));
         let passUrbanLabRelated = true
         if(urbanLabRelated){passUrbanLabRelated = user.urban_lab_related === urbanLabRelated}
         else{passUrbanLabRelated = true}

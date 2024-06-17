@@ -78,6 +78,7 @@ const Profile : React.FC = () => {
         <p><b>email:</b> {user.email ? user.email : "/"}</p>
         <p><b>telefoonnummer:</b> {user.phone_number ? user.phone_number : "/"}</p>
         <p><b>researchGate link:</b> {user.profile_page? <a href={user.profile_page}>Researchgate.net/profile/{user.voornaam}_{user.achternaam}</a> : "/"}</p>
+        <p>* Deze informatie is AI-gegenereerd op basis van publieke data. Indien u ontbrekende, achterhaalde of foute informatie wil toevoegen, mail naar <a href= "mailto: info@leuven2030urbanlab.be"> info@leuven2030urbanlab.be </a></p>
       </div>
     </div>
       )}
