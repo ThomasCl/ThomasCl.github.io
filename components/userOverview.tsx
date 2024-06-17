@@ -26,7 +26,7 @@ const UserOverviewTable: React.FC<Props> = ({ users }: Props) => {
                                 <tr>
                                     <th scope="col">Naam</th>
                                     <th scope="col">Functie</th>
-                                    <th scope="col">Skill</th>
+                                    <th scope="col">Specialisatie</th>
                                     <th scope="col">Thema</th>
                                 </tr>
                             </thead>
